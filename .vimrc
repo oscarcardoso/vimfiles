@@ -670,7 +670,7 @@ endfunction
 "fugitive-vim Gdiff fix from http://stackoverflow.com/questions/2932399/error-using-the-gdiff-command-of-fugitive-vim-using-gvim-for-windows-and-msys-g
 "let $TMP="c:/temp"
 if has("win16") || has("win32")
-	let $TMP="~/AppData/Local/Temp"
+	let $TMP="c:/Users/oscar/AppData/Local/Temp"
 else
 	let $TMP="~/tmp"
 endif
