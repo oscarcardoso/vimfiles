@@ -8,7 +8,7 @@
 	path = bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
 [submodule "bundles/gruvbox"]
-	path = bundles/gruvbox
+	path = bundle/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
 [submodule "bundle/vim-colorscheme-switcher"]
 	path = bundle/vim-colorscheme-switcher
