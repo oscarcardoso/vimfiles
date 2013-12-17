@@ -356,10 +356,10 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :Ack -i --java --cc --cpp --batch '' <left><left>
+map <leader>g :Ack -i --java --cc --cpp --batch "" <left><left>
 
 " Vimgreps in the current file
-map <leader><space> :Ack -i '' <C-R>%<C-A><home><right><right><right><right><right><right><right><right>
+map <leader><space> :Ack -i "" <C-R>%<C-A><home><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
