@@ -201,7 +201,12 @@ set ffs=unix,dos,mac
 
 " Setup default font for guimode
 if has ('gui_running')
-	set guifont=Envy_Code_R_for_Powerline:h10:cANSI
+	if has("win32") || has("win64")
+		set guifont=Envy_Code_R_for_Powerline:h10:cANSI
+	else
+		set guifont=Envy\ Code\ R\ 10
+	endif
+
 endif
 
 
@@ -474,11 +479,21 @@ endfunction
 set nu!
 
 " Project list
+" dd
 " ftm
 " learncode
 " learnpython
 " eclipse
-let project="ftm"
+let project="dd"
+
+"Working with Dental Departures
+if (project == "dd")
+	if has("win16") || has("win32")
+		cd D:\dd\
+	else
+		cd /var/www/dev
+	endif
+endif
 
 "Working with learnpythonthehardway.org
 if (project == "learnpython")
@@ -487,6 +502,7 @@ if (project == "learnpython")
 	else
 		cd /cygdrive/d/dxd/learncode/python
 	endif
+endif
 endif
 
 "Working with learn folder
