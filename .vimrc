@@ -97,6 +97,13 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
+" Fast SUPER USER saving
+"if has("win16") || has("win32") || has("win64")
+if has("unix")
+	nmap <leader>W :w !sudo tee %>/dev/null<cr>
+	"nmap <leader>W :SudoWrite % <cr>
+endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -201,10 +208,10 @@ set ffs=unix,dos,mac
 
 " Setup default font for guimode
 if has ('gui_running')
-	if has("win32") || has("win64")
-		set guifont=Envy_Code_R_for_Powerline:h10:cANSI
-	else
+	if has("unix")
 		set guifont=Envy\ Code\ R\ 10
+	else
+		set guifont=Envy_Code_R_for_Powerline:h10:cANSI
 	endif
 
 endif
@@ -361,7 +368,10 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :Ack -i --java --cc --cpp --batch "" <left><left>
+" for android projects
+"map <leader>g :Ack -i --java --cc --cpp --batch "" <left><left>
+" for dental departures
+map <leader>g :Ack -i -s --html --js --json --php --sql --xml "" <left><left>
 
 " Vimgreps in the current file
 map <leader><space> :Ack -i "" <C-R>%<C-A><home><right><right><right><right><right><right><right><right>
@@ -492,6 +502,7 @@ if (project == "dd")
 		cd D:\dd\
 	else
 		cd /var/www/dev
+		set wildignore+=/var/www/dev/zend_cache/**
 	endif
 endif
 
@@ -502,7 +513,6 @@ if (project == "learnpython")
 	else
 		cd /cygdrive/d/dxd/learncode/python
 	endif
-endif
 endif
 
 "Working with learn folder
@@ -612,7 +622,11 @@ endif
 " => Additional Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Markdown to HTML
-nmap <leader>md :%! /Tools/markdown.bat --html4tags <cr>
+if has("unix")
+	nmap <leader>md :%! $HOME/Tools/markdown.bat --html4tags <cr>
+else
+	nmap <leader>md :%! /Tools/markdown.bat --html4tags <cr>
+endif
 
 " Pathogen
 call pathogen#runtime_append_all_bundles()
@@ -637,6 +651,7 @@ nmap <silent> <special> <F2> :NERDTreeToggle<RETURN>
 
 " Make stuff
 "set makeprg=vimAntAndroid.bat
+
 
 " Avoid intro screen
 set shortmess+=I
@@ -685,16 +700,31 @@ endfunction
 
 "fugitive-vim Gdiff fix from http://stackoverflow.com/questions/2932399/error-using-the-gdiff-command-of-fugitive-vim-using-gvim-for-windows-and-msys-g
 "let $TMP="c:/temp"
-if has("win16") || has("win32")
-	let $TMP="c:/Users/oscar/AppData/Local/Temp"
-else
-	let $TMP="~/tmp"
-endif
-set directory+=,~/tmp,$TMP
+"if has("win16") || has("win32")
+	"let $TMP="c:/Users/oscar/AppData/Local/Temp"
+"else
+	let $TMP="/home/oscar/tmp"
+"endif
+set directory+=,/home/oscar/tmp,$TMP
 
 if has("win32") && &shell !~ 'cmd'
 	set shellc:\Windows\System32\cmd.exe
 endif
+
+" Syntastic and jshint config
+" Use jslint as maker
+set makeprg=jshint\ %
+set errorformat=%-P%f,
+		\%E%>\ #%n\ %m,%Z%.%#Line\ %l\\,\ Pos\ %c,
+		\%-G%f\ is\ OK.,%-Q
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=1
+let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn %fw #%w}]'
+nnoremap <silent><F1> :SyntasticCheck<CR>
+inoremap <silent><F1> <C-O>:SyntasticCheck<CR>
+vnoremap <silent><F1> :SyntasticCheck<CR>
+cnoremap <F1> SyntasticCheck
+
 
 " Colorscheme after loading bundles
 try
