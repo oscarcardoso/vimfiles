@@ -115,7 +115,7 @@ set so=7
 set wildmenu
 
 " Ignore compiled files
-set wildignore+=*.o,*~,*.pyc,*.bdae,*.dae,.git,*.wav,*.png,*.jpg,*.gif,*.tif,*.ttf,*.bin,*.lib,*.sobfs,*.exe,*.arrayc,*.obfs,*.col,*.strct,*.cstc,*.glsl,*.max,*.dope,*.mp4,*.tga,*.bmp,*.sln,DATA_[0-9],DATA_[0-9]_[0-9],*.srt,*.swf,*.fla,*.psd,*.obj,*.class,*.so,*.zip,*.jar,*.o.d,*.pdf,*.m4v,*.ods,*.cache,*.xlor,*.vxa,*.xls,*.fxb,*.vxn,*.bar,*.tcfg,*.filters,*.ncb,*.vcpro*,*.a,*.pch,*.pdb,*.dll,*.svn-base,*.vcxproj,*.suo,*.template,*.xcodeproj
+set wildignore+=*.o,*~,*.pyc,*.bdae,*.dae,.git,*.wav,*.png,*.jpg,*.gif,*.tif,*.ttf,*.bin,*.lib,*.sobfs,*.exe,*.arrayc,*.obfs,*.col,*.strct,*.cstc,*.glsl,*.max,*.dope,*.mp4,*.tga,*.bmp,*.sln,DATA_[0-9],DATA_[0-9]_[0-9],*.srt,*.swf,*.fla,*.psd,*.obj,*.class,*.so,*.zip,*.jar,*.o.d,*.pdf,*.m4v,*.ods,*.cache,*.xlor,*.vxa,*.xls,*.fxb,*.vxn,*.bar,*.tcfg,*.filters,*.ncb,*.vcpro*,*.a,*.pch,*.pdb,*.dll,*.svn-base,*.vcxproj,*.suo,*.template,*.xcodeproj,*.sublime-workspace
 if has("win16") || has("win32")
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
@@ -553,11 +553,6 @@ if (project == "ftm")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Command-t Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:CommandTMaxFiles=200000
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Screen size and position Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("gui_running")
@@ -623,7 +618,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Markdown to HTML
 if has("unix")
-	nmap <leader>md :%! $HOME/Tools/markdown.bat --html4tags <cr>
+	nmap <leader>md :%! markdown --html4tags <cr>
 else
 	nmap <leader>md :%! /Tools/markdown.bat --html4tags <cr>
 endif
@@ -733,3 +728,11 @@ try
 	endif
 catch
 endtry
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => CtrlP.vim Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+nmap <leader>b :CtrlPBuffer <cr>
+nmap <leader>r :CtrlPMRU <cr>
+nmap <leader>t :CtrlP <cr>
