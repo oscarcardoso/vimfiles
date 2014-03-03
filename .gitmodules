@@ -31,3 +31,6 @@
 [submodule "bundle/moria"]
 	path = bundle/moria
 	url = http://github.com/vim-scripts/moria
+[submodule "bundle/wombat"]
+	path = bundle/wombat
+	url = http://github.com/vim-scripts/Wombat
