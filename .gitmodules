@@ -28,3 +28,6 @@
 [submodule "bundle/jellybeans"]
 	path = bundle/jellybeans
 	url = http://github.com/nanotech/jellybeans.vim
+[submodule "bundle/moria"]
+	path = bundle/moria
+	url = http://github.com/vim-scripts/moria
