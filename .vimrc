@@ -726,7 +726,8 @@ cnoremap <F1> SyntasticCheck
 " Colorscheme after loading bundles
 try
 	if has("gui_running")
-		colorscheme gruvbox
+		"colorscheme gruvbox
+		colorscheme moria
 	endif
 catch
 endtry
