@@ -693,6 +693,8 @@ function! DeleteEmptyBuffers()
     endif
 endfunction
 
+nmap <leader>d :call DeleteEmptyBuffers() <cr>
+
 "fugitive-vim Gdiff fix from http://stackoverflow.com/questions/2932399/error-using-the-gdiff-command-of-fugitive-vim-using-gvim-for-windows-and-msys-g
 "let $TMP="c:/temp"
 "if has("win16") || has("win32")
