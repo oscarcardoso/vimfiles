@@ -40,3 +40,6 @@
 [submodule "bundle/rename"]
 	path = bundle/rename
 	url = http://github.com/danro/rename.vim
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
