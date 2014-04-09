@@ -115,7 +115,7 @@ set so=7
 set wildmenu
 
 " Ignore compiled files
-set wildignore+=*.o,*~,*.pyc,*.bdae,*.dae,.git,*.wav,*.png,*.jpg,*.gif,*.tif,*.ttf,*.bin,*.lib,*.sobfs,*.exe,*.arrayc,*.obfs,*.col,*.strct,*.cstc,*.glsl,*.max,*.dope,*.mp4,*.tga,*.bmp,*.sln,DATA_[0-9],DATA_[0-9]_[0-9],*.srt,*.swf,*.fla,*.psd,*.obj,*.class,*.so,*.zip,*.jar,*.o.d,*.pdf,*.m4v,*.ods,*.cache,*.xlor,*.vxa,*.xls,*.fxb,*.vxn,*.bar,*.tcfg,*.filters,*.ncb,*.vcpro*,*.a,*.pch,*.pdb,*.dll,*.svn-base,*.vcxproj,*.suo,*.template,*.xcodeproj,*.sublime-workspace
+set wildignore+=*.o,*~,*.pyc,*.bdae,*.dae,.git,*.wav,*.png,*.jpg,*.gif,*.tif,*.ttf,*.bin,*.lib,*.sobfs,*.exe,*.arrayc,*.obfs,*.col,*.strct,*.cstc,*.glsl,*.max,*.dope,*.mp4,*.tga,*.bmp,*.sln,DATA_[0-9],DATA_[0-9]_[0-9],*.srt,*.swf,*.fla,*.psd,*.obj,*.class,*.so,*.zip,*.jar,*.o.d,*.pdf,*.m4v,*.ods,*.cache,*.xlor,*.vxa,*.xls,*.fxb,*.vxn,*.bar,*.tcfg,*.filters,*.ncb,*.vcpro*,*.a,*.pch,*.pdb,*.dll,*.svn-base,*.vcxproj,*.suo,*.template,*.xcodeproj,*.sublime-workspace,*.orig
 if has("win16") || has("win32")
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
@@ -181,7 +181,7 @@ au BufRead,BufNewFile *.log set filetype=logcat
 au BufRead,BufNewFile *.md set filetype=markdown
 
 try
-    colorscheme desert
+    colorscheme moria
 catch
 endtry
 
@@ -209,9 +209,9 @@ set ffs=unix,dos,mac
 " Setup default font for guimode
 if has ('gui_running')
 	if has("unix")
-		set guifont=Envy\ Code\ R\ 10
+		set guifont=Terminus\ 9
 	else
-		set guifont=Envy_Code_R_for_Powerline:h10:cANSI
+		set guifont=Envy_Code_R_for_Powerline:h12:cANSI
 	endif
 
 endif
@@ -503,6 +503,13 @@ if (project == "dd")
 	else
 		cd /var/www/dev
 		set wildignore+=/var/www/dev/zend_cache/**
+		set wildignore+=/var/www/dev/public/js/ext/**
+		set wildignore+=/var/www/dev/public/js/tiny_mce/**
+		set wildignore+=/var/www/dev/public/js/jquery/**
+		set wildignore+=/var/www/dev/public/blog/wp-admin/**
+		set wildignore+=/var/www/dev/public/images/**
+		set wildignore+=/var/www/dev/grind/**
+		set wildignore+=/var/www/dev/vendor/**
 	endif
 endif
 
@@ -689,8 +696,8 @@ function! DeleteEmptyBuffers()
         let i += 1
     endwhile
     if len(empty) > 0
-        exe 'bdelete' join(empty)
-    endif
+		exe 'silent! bdelete' join(empty)
+	endif
 endfunction
 
 nmap <leader>d :call DeleteEmptyBuffers() <cr>
@@ -703,6 +710,20 @@ nmap <leader>d :call DeleteEmptyBuffers() <cr>
 	let $TMP="/home/oscar/tmp"
 "endif
 set directory+=,/home/oscar/tmp,$TMP
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Key maps for fugitive Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+
+"if has("gui_running")
+"	au FilterWritePre * if &diff | colorscheme gruvbox | endif
+"	au BufWinLeave * colorscheme base16-railscasts
+"else
+"	au FilterWritePre * if &diff | set t_Co=256 | set bg=dark | colorscheme gruvbox | endif
+"	au BufWinLeave * colorscheme base16-railscasts
+"endif
 
 if has("win32") && &shell !~ 'cmd'
 	set shellc:\Windows\System32\cmd.exe
@@ -717,6 +738,9 @@ set errorformat=%-P%f,
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=1
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn %fw #%w}]'
+let g:syntastic_mode_map = { 'mode': 'passive', 
+							\ 'active_filetypes': [],
+							\ 'passive_filetypes': ['javascript', 'php'] }
 nnoremap <silent><F1> :SyntasticCheck<CR>
 inoremap <silent><F1> <C-O>:SyntasticCheck<CR>
 vnoremap <silent><F1> :SyntasticCheck<CR>
@@ -726,8 +750,13 @@ cnoremap <F1> SyntasticCheck
 " Colorscheme after loading bundles
 try
 	if has("gui_running")
-		"colorscheme gruvbox
-		colorscheme moria
+		"colorscheme base16-railscasts
+		"colorscheme moria
+		colorscheme base16-solarized
+		set background=light
+	else
+		colorscheme zellner
+		set background=dark
 	endif
 catch
 endtry
@@ -736,6 +765,7 @@ endtry
 " => CtrlP.vim Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_switch_buffer = ''
 nmap <leader>b :CtrlPBuffer <cr>
 nmap <leader>r :CtrlPMRU <cr>
 nmap <leader>t :CtrlP <cr>
