@@ -209,7 +209,7 @@ set ffs=unix,dos,mac
 " Setup default font for guimode
 if has ('gui_running')
 	if has("unix")
-		set guifont=Terminus\ 9
+		set guifont=Envy\ Code\ R\ 10
 	else
 		set guifont=Envy_Code_R_for_Powerline:h12:cANSI
 	endif
@@ -761,6 +761,7 @@ try
 catch
 endtry
 
+set cursorline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CtrlP.vim Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
