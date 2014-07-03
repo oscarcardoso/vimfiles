@@ -115,7 +115,7 @@ set so=7
 set wildmenu
 
 " Ignore compiled files
-set wildignore+=*.o,*~,*.pyc,*.bdae,*.dae,.git,*.wav,*.png,*.jpg,*.gif,*.tif,*.ttf,*.bin,*.lib,*.sobfs,*.exe,*.arrayc,*.obfs,*.col,*.strct,*.cstc,*.glsl,*.max,*.dope,*.mp4,*.tga,*.bmp,*.sln,DATA_[0-9],DATA_[0-9]_[0-9],*.srt,*.swf,*.fla,*.psd,*.obj,*.class,*.so,*.zip,*.jar,*.o.d,*.pdf,*.m4v,*.ods,*.cache,*.xlor,*.vxa,*.xls,*.fxb,*.vxn,*.bar,*.tcfg,*.filters,*.ncb,*.vcpro*,*.a,*.pch,*.pdb,*.dll,*.svn-base,*.vcxproj,*.suo,*.template,*.xcodeproj,*.sublime-workspace,*.orig
+set wildignore+=*.o,*~,*.pyc,*.bdae,*.dae,.git,*.wav,*.png,*.jpg,*.gif,*.tif,*.ttf,*.bin,*.lib,*.sobfs,*.exe,*.arrayc,*.obfs,*.col,*.strct,*.cstc,*.glsl,*.max,*.dope,*.mp4,*.tga,*.bmp,*.sln,DATA_[0-9],DATA_[0-9]_[0-9],*.srt,*.swf,*.fla,*.psd,*.obj,*.class,*.so,*.zip,*.jar,*.o.d,*.pdf,*.m4v,*.ods,*.cache,*.xlor,*.vxa,*.xls,*.fxb,*.vxn,*.bar,*.tcfg,*.filters,*.ncb,*.vcpro*,*.a,*.pch,*.pdb,*.dll,*.svn-base,*.vcxproj,*.suo,*.template,*.xcodeproj,*.sublime-workspace,*.orig,*.mp3,*.mp4,*.gitignore
 if has("win16") || has("win32")
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
@@ -371,7 +371,7 @@ vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 " for android projects
 "map <leader>g :Ack -i --java --cc --cpp --batch "" <left><left>
 " for dental departures
-map <leader>g :Ack -i -s --html --js --json --php --sql --xml "" <left><left>
+map <leader>g :Ack -i -s --html --js --json --php --xml "" <left><left>
 
 " Vimgreps in the current file
 map <leader><space> :Ack -i "" <C-R>%<C-A><home><right><right><right><right><right><right><right><right>
@@ -510,6 +510,7 @@ if (project == "dd")
 		set wildignore+=/var/www/dev/public/images/**
 		set wildignore+=/var/www/dev/grind/**
 		set wildignore+=/var/www/dev/vendor/**
+		set wildignore+=/var/www/dev/data/mailer/**
 	endif
 endif
 
@@ -750,10 +751,10 @@ cnoremap <F1> SyntasticCheck
 " Colorscheme after loading bundles
 try
 	if has("gui_running")
-		"colorscheme base16-railscasts
+		colorscheme base16-railscasts
 		"colorscheme moria
-		colorscheme base16-solarized
-		set background=light
+		"colorscheme base16-solarized
+		set background=dark
 	else
 		colorscheme zellner
 		set background=dark
@@ -770,3 +771,4 @@ let g:ctrlp_switch_buffer = ''
 nmap <leader>b :CtrlPBuffer <cr>
 nmap <leader>r :CtrlPMRU <cr>
 nmap <leader>t :CtrlP <cr>
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
