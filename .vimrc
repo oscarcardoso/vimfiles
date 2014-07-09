@@ -208,6 +208,8 @@ set ffs=unix,dos,mac
 
 " Setup default font for guimode
 if has ('gui_running')
+	map <M-f> <Esc>:set guifont=Envy\ Code\ R\ 10<CR>
+	map <M-F> <Esc>:set guifont=Terminus\ 9<CR>
 	if has("unix")
 		set guifont=Envy\ Code\ R\ 10
 	else
