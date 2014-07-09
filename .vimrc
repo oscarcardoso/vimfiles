@@ -718,7 +718,7 @@ set directory+=,/home/oscar/tmp,$TMP
 " => Key maps for fugitive Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gd :Gvdiff<CR>
 
 "if has("gui_running")
 "	au FilterWritePre * if &diff | colorscheme gruvbox | endif
