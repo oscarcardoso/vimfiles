@@ -208,8 +208,9 @@ set ffs=unix,dos,mac
 
 " Setup default font for guimode
 if has ('gui_running')
-	map <M-f> <Esc>:set guifont=Envy\ Code\ R\ 10<CR>
-	map <M-F> <Esc>:set guifont=Terminus\ 9<CR>
+	map <M-f>1 <Esc>:set guifont=M+\ 1m\ 10<CR>
+	map <M-f>2 <Esc>:set guifont=Terminus\ 9<CR>
+	map <M-f>3 <Esc>:set guifont=Envy\ Code\ R\ 10<CR>
 	if has("unix")
 		set guifont=Envy\ Code\ R\ 10
 	else
@@ -773,4 +774,6 @@ let g:ctrlp_switch_buffer = ''
 nmap <leader>b :CtrlPBuffer <cr>
 nmap <leader>r :CtrlPMRU <cr>
 nmap <leader>t :CtrlP <cr>
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
