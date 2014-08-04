@@ -58,3 +58,6 @@
 [submodule "bundle/plaintasks"]
 	path = bundle/plaintasks
 	url = https://github.com/elentok/plaintasks.vim.git
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = http://github.com/scrooloose/nerdcommenter.git
