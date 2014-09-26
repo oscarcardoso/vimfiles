@@ -5,7 +5,10 @@ A repo for vimfiles folder modifications.
 
 Installation
 ============
-	git clone https://github.com/oscarcardoso/vimfiles.git
+	cd ~
+	mkdir .vim
+	ln -s ~/.vim/.vimrc ~/.vimrc
+	git clone https://github.com/oscarcardoso/vimfiles.git .vim
 
 Setup Submodules
 ================
