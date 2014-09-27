@@ -211,6 +211,10 @@ if has ('gui_running')
 	map <M-f>1 <Esc>:set guifont=M+\ 1m\ 10<CR>
 	map <M-f>2 <Esc>:set guifont=Terminus\ 9<CR>
 	map <M-f>3 <Esc>:set guifont=Envy\ Code\ R\ 10<CR>
+	map <M-f>4 <Esc>:set guifont=Source\ Code\ Pro\ 10<CR>
+	map <M-f>5 <Esc>:set guifont=Ubuntu\ Mono\ 12<CR>
+	map <M-f>6 <Esc>:set guifont=Anonymous\ Pro\ 11<CR>
+	map <M-f>7 <Esc>:set guifont=Fira\ Mono\ 12<CR>
 	if has("unix")
 		set guifont=Envy\ Code\ R\ 10
 	else
@@ -298,7 +302,7 @@ map <leader>t<leader> :tabnext
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+map <leader>cde :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
@@ -374,10 +378,14 @@ vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 " for android projects
 "map <leader>g :Ack -i --java --cc --cpp --batch "" <left><left>
 " for dental departures
-map <leader>g :Ack -i -s --html --js --json --php --xml "" <left><left>
+map <leader>g :Ack -i -s --html --js --php "" <left><left>
 
 " Vimgreps in the current file
 map <leader><space> :Ack -i "" <C-R>%<C-A><home><right><right><right><right><right><right><right><right>
+"let g:ackhighlight = 0
+"let g:ack_autofold_results = 0
+"let g:ackpreview = 0
+map <leader>cv :AckFromSearch<cr>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
@@ -393,7 +401,7 @@ vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cc :botright cope<cr>
+map <leader>cd :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
@@ -497,16 +505,17 @@ set nu!
 " learncode
 " learnpython
 " eclipse
-let project="dd"
+let project="celsus"
 
 "Working with Dental Departures
-if (project == "dd")
+if (project == "celsus")
 	if has("win16") || has("win32")
 		cd D:\dd\
 	else
 		cd /var/www/dev
 		set wildignore+=/var/www/dev/zend_cache/**
 		set wildignore+=/var/www/dev/public/js/ext/**
+		set wildignore+=/var/www/dev/public/js/ext.ux/**
 		set wildignore+=/var/www/dev/public/js/tiny_mce/**
 		set wildignore+=/var/www/dev/public/js/jquery/**
 		set wildignore+=/var/www/dev/public/blog/wp-admin/**
@@ -743,8 +752,8 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=1
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn %fw #%w}]'
 let g:syntastic_mode_map = { 'mode': 'passive', 
-							\ 'active_filetypes': [],
-							\ 'passive_filetypes': ['javascript', 'php'] }
+							\ 'active_filetypes': ['php'],
+							\ 'passive_filetypes': ['javascript'] }
 nnoremap <silent><F1> :SyntasticCheck<CR>
 inoremap <silent><F1> <C-O>:SyntasticCheck<CR>
 vnoremap <silent><F1> :SyntasticCheck<CR>
@@ -770,6 +779,7 @@ set cursorline
 " => CtrlP.vim Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_working_path_mode = ''
 let g:ctrlp_switch_buffer = ''
 nmap <leader>b :CtrlPBuffer <cr>
 nmap <leader>r :CtrlPMRU <cr>
