@@ -763,7 +763,8 @@ cnoremap <F1> SyntasticCheck
 " Colorscheme after loading bundles
 try
 	if has("gui_running")
-		colorscheme base16-railscasts
+		colorscheme base16-atelierforest
+		"colorscheme base16-railscasts
 		"colorscheme moria
 		"colorscheme base16-solarized
 		set background=dark
