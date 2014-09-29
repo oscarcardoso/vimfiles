@@ -4,4 +4,4 @@
 Makefile
 .netrwhist
 .VimballRecord
-dir/tags/**
+doc/tags
