@@ -194,6 +194,8 @@ if has("gui_running")
 	set guioptions-=m "remove menu bar
     set t_Co=256
     set guitablabel=%M\ %t
+elseif $TERM == "xterm-256color"
+	set t_Co=256
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -523,6 +525,7 @@ if (project == "celsus")
 		set wildignore+=/var/www/dev/grind/**
 		set wildignore+=/var/www/dev/vendor/**
 		set wildignore+=/var/www/dev/data/mailer/**
+		set wildignore+=/var/www/dev/library/wurfl-php-1.4.2.0/**
 	endif
 endif
 
@@ -769,8 +772,8 @@ try
 		"colorscheme base16-solarized
 		set background=dark
 	else
-		colorscheme zellner
-		set background=dark
+		colorscheme jellybeans
+		set background=light
 	endif
 catch
 endtry
@@ -788,3 +791,16 @@ nmap <leader>t :CtrlP <cr>
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Qargs helper command http://vimcasts.org/episodes/project-wide-find-and-replace/
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+function! QuickfixFilenames()
+	" Building a hash ensures we get each buffer only once
+	let buffer_numbers = {}
+	for quickfix_item in getqflist()
+		let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+	endfor
+	return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfunction
