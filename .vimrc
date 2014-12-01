@@ -524,6 +524,7 @@ if (project == "celsus")
 		set wildignore+=/var/www/dev/public/images/**
 		set wildignore+=/var/www/dev/grind/**
 		set wildignore+=/var/www/dev/vendor/**
+		set wildignore+=/var/www/dev/tests/log/**
 		set wildignore+=/var/www/dev/data/mailer/**
 		set wildignore+=/var/www/dev/library/wurfl-php-1.4.2.0/**
 	endif
