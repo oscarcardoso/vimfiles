@@ -220,7 +220,7 @@ if has ('gui_running')
 	if has("unix")
 		set guifont=Envy\ Code\ R\ 10
 	else
-		set guifont=Envy_Code_R_for_Powerline:h12:cANSI
+		set guifont=Envy_Code_R_for_Powerline:h10:cANSI
 	endif
 
 endif
