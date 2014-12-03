@@ -524,7 +524,7 @@ if (project == "celsus")
 		set wildignore+=C:\Users\oscar\Projects\dd\dev\vendor\**
 		set wildignore+=C:\Users\oscar\Projects\dd\dev\data\mailer\**
 		set wildignore+=C:\Users\oscar\Projects\dd\dev\library\wurfl-php-1.4.2.0\**
-	else
+	elseif has("unix")
 		cd /var/www/dev
 		set wildignore+=/var/www/dev/zend_cache/**
 		set wildignore+=/var/www/dev/public/js/ext/**
@@ -538,6 +538,19 @@ if (project == "celsus")
 		set wildignore+=/var/www/dev/tests/log/**
 		set wildignore+=/var/www/dev/data/mailer/**
 		set wildignore+=/var/www/dev/library/wurfl-php-1.4.2.0/**
+	else
+		cd /cygdrive/c/Users/oscar/Projects/dd/dev
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/zend_cache/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/ext/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/ext.ux/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/tiny_mce/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/jquery/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/blog/wp-admin/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/images/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/grind/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/vendor/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/data/mailer/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/library/wurfl-php-1.4.2.0/**
 	endif
 endif
 
