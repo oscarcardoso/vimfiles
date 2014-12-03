@@ -196,6 +196,8 @@ if has("gui_running")
     set guitablabel=%M\ %t
 elseif $TERM == "xterm-256color"
 	set t_Co=256
+elseif has("win32unix")
+	set t_Co=256
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
