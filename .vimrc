@@ -831,3 +831,9 @@ function! QuickfixFilenames()
 	endfor
 	return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vdebug Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vdebug_options["ide_key"] = "netbeans-xdebug"
+let g:vdebug_options["break_on_open"] = 0
