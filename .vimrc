@@ -196,6 +196,8 @@ if has("gui_running")
     set guitablabel=%M\ %t
 elseif $TERM == "xterm-256color"
 	set t_Co=256
+elseif has("win32unix")
+	set t_Co=256
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -220,7 +222,7 @@ if has ('gui_running')
 	if has("unix")
 		set guifont=Envy\ Code\ R\ 10
 	else
-		set guifont=Envy_Code_R_for_Powerline:h12:cANSI
+		set guifont=Envy_Code_R_for_Powerline:h10:cANSI
 	endif
 
 endif
@@ -512,8 +514,32 @@ let project="celsus"
 "Working with Dental Departures
 if (project == "celsus")
 	if has("win16") || has("win32")
-		cd D:\dd\
-	else
+		cd C:\Users\oscar\Projects\dd\dev
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\zend_cache\**
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\js\ext\**
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\js\ext.ux\**
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\js\tiny_mce\**
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\js\jquery\**
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\blog\wp-admin\**
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\images\**
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\grind\**
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\vendor\**
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\data\mailer\**
+		set wildignore+=C:\Users\oscar\Projects\dd\dev\library\wurfl-php-1.4.2.0\**
+	elseif has("win32unix")
+		cd /cygdrive/c/Users/oscar/Projects/dd/dev
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/zend_cache/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/ext/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/ext.ux/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/tiny_mce/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/jquery/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/blog/wp-admin/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/images/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/grind/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/vendor/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/data/mailer/**
+		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/library/wurfl-php-1.4.2.0/**
+	elseif has("unix")
 		cd /var/www/dev
 		set wildignore+=/var/www/dev/zend_cache/**
 		set wildignore+=/var/www/dev/public/js/ext/**
@@ -524,6 +550,7 @@ if (project == "celsus")
 		set wildignore+=/var/www/dev/public/images/**
 		set wildignore+=/var/www/dev/grind/**
 		set wildignore+=/var/www/dev/vendor/**
+		set wildignore+=/var/www/dev/tests/log/**
 		set wildignore+=/var/www/dev/data/mailer/**
 		set wildignore+=/var/www/dev/library/wurfl-php-1.4.2.0/**
 	endif
@@ -720,11 +747,11 @@ nmap <leader>d :call DeleteEmptyBuffers() <cr>
 
 "fugitive-vim Gdiff fix from http://stackoverflow.com/questions/2932399/error-using-the-gdiff-command-of-fugitive-vim-using-gvim-for-windows-and-msys-g
 "let $TMP="c:/temp"
-"if has("win16") || has("win32")
-	"let $TMP="c:/Users/oscar/AppData/Local/Temp"
-"else
+if has("win16") || has("win32")
+	let $TMP="c:/Users/oscar/AppData/Local/Temp"
+else
 	let $TMP="/home/oscar/tmp"
-"endif
+endif
 set directory+=,/home/oscar/tmp,$TMP
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -804,3 +831,9 @@ function! QuickfixFilenames()
 	endfor
 	return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vdebug Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
+let g:vdebug_options = {'break_on_open': 0}

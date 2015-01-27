@@ -5,3 +5,5 @@ Makefile
 .netrwhist
 .VimballRecord
 doc/tags
+
+.netrwhist~
