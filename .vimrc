@@ -215,12 +215,12 @@ if has ('gui_running')
 	map <M-f>1 <Esc>:set guifont=M+\ 1m\ 10<CR>
 	map <M-f>2 <Esc>:set guifont=Terminus\ 9<CR>
 	map <M-f>3 <Esc>:set guifont=Envy\ Code\ R\ 10<CR>
-	map <M-f>4 <Esc>:set guifont=Source\ Code\ Pro\ 10<CR>
 	map <M-f>5 <Esc>:set guifont=Ubuntu\ Mono\ 12<CR>
-	map <M-f>6 <Esc>:set guifont=Anonymous\ Pro\ 11<CR>
-	map <M-f>7 <Esc>:set guifont=Fira\ Mono\ 12<CR>
 	if has("unix")
-		set guifont=Envy\ Code\ R\ 10
+		set guifont=M+\ 1m\ 10
+		if &diff
+			set guifont=Terminus\ 9
+		endif
 	else
 		set guifont=Envy_Code_R_for_Powerline:h10:cANSI
 	endif
@@ -759,6 +759,7 @@ set directory+=,/home/oscar/tmp,$TMP
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gvdiff<CR>
+nnoremap <leader>gb :Gblame<CR>
 
 "if has("gui_running")
 "	au FilterWritePre * if &diff | colorscheme gruvbox | endif
