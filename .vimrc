@@ -688,7 +688,7 @@ let g:Powerline_mode_v = ' V '
 "NERDTree
 "autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
-nmap <silent> <special> <F2> :NERDTreeToggle<RETURN>
+nmap <leader>gt :NERDTreeToggle<RETURN>
 
 "Overlength
 " highlight OverLength ctermbg=red ctermfg=white guibg=#592929
