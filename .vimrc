@@ -217,7 +217,7 @@ if has ('gui_running')
 	map <M-f>3 <Esc>:set guifont=Envy\ Code\ R\ 10<CR>
 	map <M-f>5 <Esc>:set guifont=Ubuntu\ Mono\ 12<CR>
 	if has("unix")
-		set guifont=M+\ 1m\ 10
+		set guifont=Terminus\ 9
 		if &diff
 			set guifont=Terminus\ 9
 		endif
@@ -540,19 +540,21 @@ if (project == "celsus")
 		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/data/mailer/**
 		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/library/wurfl-php-1.4.2.0/**
 	elseif has("unix")
-		cd /var/www/dev
-		set wildignore+=/var/www/dev/zend_cache/**
-		set wildignore+=/var/www/dev/public/js/ext/**
-		set wildignore+=/var/www/dev/public/js/ext.ux/**
-		set wildignore+=/var/www/dev/public/js/tiny_mce/**
-		set wildignore+=/var/www/dev/public/js/jquery/**
-		set wildignore+=/var/www/dev/public/blog/wp-admin/**
-		set wildignore+=/var/www/dev/public/images/**
-		set wildignore+=/var/www/dev/grind/**
-		set wildignore+=/var/www/dev/vendor/**
-		set wildignore+=/var/www/dev/tests/log/**
-		set wildignore+=/var/www/dev/data/mailer/**
-		set wildignore+=/var/www/dev/library/wurfl-php-1.4.2.0/**
+		if isdirectory("/var/www/dev")
+			cd /var/www/dev
+			set wildignore+=/var/www/dev/zend_cache/**
+			set wildignore+=/var/www/dev/public/js/ext/**
+			set wildignore+=/var/www/dev/public/js/ext.ux/**
+			set wildignore+=/var/www/dev/public/js/tiny_mce/**
+			set wildignore+=/var/www/dev/public/js/jquery/**
+			set wildignore+=/var/www/dev/public/blog/wp-admin/**
+			set wildignore+=/var/www/dev/public/images/**
+			set wildignore+=/var/www/dev/grind/**
+			set wildignore+=/var/www/dev/vendor/**
+			set wildignore+=/var/www/dev/tests/log/**
+			set wildignore+=/var/www/dev/data/mailer/**
+			set wildignore+=/var/www/dev/library/wurfl-php-1.4.2.0/**
+		endif
 	endif
 endif
 
