@@ -704,6 +704,9 @@ let g:airline_mode_map = {
   \ '' : 'S',
   \ }
 
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
 " unicode symbols
 "let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
