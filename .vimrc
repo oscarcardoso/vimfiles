@@ -680,12 +680,12 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#infect()
 call pathogen#helptags()
 
-" Powerline
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_mode_n = ' N '
-let g:Powerline_mode_i = ' I '
-let g:Powerline_mode_s = ' S '
-let g:Powerline_mode_v = ' V '
+ "Powerline
+"let g:Powerline_symbols = 'unicode'
+"let g:Powerline_mode_n = ' N '
+"let g:Powerline_mode_i = ' I '
+"let g:Powerline_mode_s = ' S '
+"let g:Powerline_mode_v = ' V '
 
 "NERDTree
 "autocmd VimEnter * NERDTree
