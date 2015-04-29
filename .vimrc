@@ -552,6 +552,7 @@ if (project == "celsus")
 			set wildignore+=/var/www/dev/grind/**
 			set wildignore+=/var/www/dev/vendor/**
 			set wildignore+=/var/www/dev/tests/log/**
+			set wildignore+=/var/www/dev/tests/**
 			set wildignore+=/var/www/dev/data/mailer/**
 			set wildignore+=/var/www/dev/library/wurfl-php-1.4.2.0/**
 		endif
@@ -686,6 +687,36 @@ call pathogen#helptags()
 "let g:Powerline_mode_i = ' I '
 "let g:Powerline_mode_s = ' S '
 "let g:Powerline_mode_v = ' V '
+
+" Airline
+" Short form mode text
+let g:airline_mode_map = {
+  \ '__' : '-',
+  \ 'n'  : 'N',
+  \ 'i'  : 'I',
+  \ 'R'  : 'R',
+  \ 'c'  : 'C',
+  \ 'v'  : 'V',
+  \ 'V'  : 'V',
+  \ '' : 'V',
+  \ 's'  : 'S',
+  \ 'S'  : 'S',
+  \ '' : 'S',
+  \ }
+
+" unicode symbols
+"let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
 "NERDTree
 "autocmd VimEnter * NERDTree
