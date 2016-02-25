@@ -61,3 +61,9 @@
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = http://github.com/bling/vim-airline
+[submodule "bundle/dracula-theme"]
+	path = bundle/dracula-theme
+	url = git@github.com:zenorocha/dracula-theme.git
+[submodule "bundle/vim-hybrid"]
+	path = bundle/vim-hybrid
+	url = http://github.com/scwood/vim-hybrid.git
