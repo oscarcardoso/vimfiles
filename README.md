@@ -12,10 +12,17 @@ Installation on Linux
 
 Installation on Windows
 =======================
+
+Go to your home folder, create a folder named .vim, clone the project.
+After that you will need to create hard links for the .vimrc file and
+for the vimfiles folder if you installed vim with the installer and
+not from a zip file.
+
 	cd ~
 	mkdir .vim
 	git clone https://github.com/oscarcardoso/vimfiles.git .vim
 	mklink /H ".vimrc" ".vim/.vimrc"
+	mklink /J "c:\Users\Oscar\vimfiles" "c:\users\oscar\.vim"
 
 Setup Submodules
 ================
