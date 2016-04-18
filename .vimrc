@@ -224,6 +224,9 @@ if has ('gui_running')
 		endif
 	else
 		set guifont=Envy_Code_R_for_Powerline:h10:cANSI
+		if &diff
+			set guifont=Terminus\ 9
+		endif
 	endif
 
 endif
@@ -253,7 +256,7 @@ set tabstop=4
 
 " Linebreak on 500 characters
 set lbr
-set tw=120
+set tw=500
 
 set ai "Auto indent
 set si "Smart indent
@@ -787,6 +790,13 @@ let g:airline#extensions#whitespace#checks = ['trailing']
     return ' ' . a:name
   endfunction
 
+let g:airline#extensions#whitespace#checks = ['trailing']
+
+  let g:airline#extensions#branch#format = 'CustomBranchName'
+  function! CustomBranchName(name)
+    return ' ' . a:name
+  endfunction
+
 "NERDTree
 "autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
@@ -897,17 +907,26 @@ cnoremap <F1> SyntasticCheck
 " Colorscheme after loading bundles
 try
 	if has("gui_running")
-		"colorscheme base16-atelierforest
-		"colorscheme base16-railscasts
-		"colorscheme moria
-		"colorscheme base16-3024
-		"colorscheme base16-monokai
-		colorscheme base16-bespin
+		if has("win16") || has("win32")
+			colorscheme base16-atelierforest
+		else
+            "colorscheme base16-atelierforest
+            "colorscheme base16-railscasts
+            "colorscheme moria
+            "colorscheme base16-3024
+            "colorscheme base16-monokai
+            colorscheme base16-bespin
+		endif
 		set background=dark
 	else
-		colorscheme gruvbox
-		"set background=light
-		set background=dark
+		if has("win16") || has("win32")
+            colorscheme jellybeans
+            set background=light
+        else
+            colorscheme gruvbox
+            "set background=light
+            set background=dark
+        endif
 	endif
 catch
 endtry
