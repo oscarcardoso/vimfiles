@@ -530,18 +530,18 @@ endif
 "Working with Dental Departures
 if (project == "celsus")
 	if has("win16") || has("win32")
-		cd C:\Users\oscar\Projects\dd\dev
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\zend_cache\**
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\js\ext\**
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\js\ext.ux\**
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\js\tiny_mce\**
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\js\jquery\**
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\blog\wp-admin\**
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\public\images\**
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\grind\**
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\vendor\**
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\data\mailer\**
-		set wildignore+=C:\Users\oscar\Projects\dd\dev\library\wurfl-php-1.4.2.0\**
+		cd D:\dd\dev
+		set wildignore+=D:\dd\dev\zend_cache\**
+		set wildignore+=D:\dd\dev\public\js\ext\**
+		set wildignore+=D:\dd\dev\public\js\ext.ux\**
+		set wildignore+=D:\dd\dev\public\js\tiny_mce\**
+		set wildignore+=D:\dd\dev\public\js\jquery\**
+		set wildignore+=D:\dd\dev\public\blog\wp-admin\**
+		set wildignore+=D:\dd\dev\public\images\**
+		set wildignore+=D:\dd\dev\grind\**
+		set wildignore+=D:\dd\dev\vendor\**
+		set wildignore+=D:\dd\dev\data\mailer\**
+		set wildignore+=D:\dd\dev\library\wurfl-php-1.4.2.0\**
 	elseif has("win32unix")
 		cd /cygdrive/c/Users/oscar/Projects/dd/dev
 		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/zend_cache/**
