@@ -3,12 +3,19 @@ vimfiles
 
 A repo for vimfiles folder modifications.
 
-Installation
-============
+Installation on Linux
+=====================
 	cd ~
 	mkdir .vim
 	ln -s ~/.vim/.vimrc ~/.vimrc
 	git clone https://github.com/oscarcardoso/vimfiles.git .vim
+
+Installation on Windows
+=======================
+	cd ~
+	mkdir .vim
+	git clone https://github.com/oscarcardoso/vimfiles.git .vim
+	mklink /H ".vimrc" ".vim/.vimrc"
 
 Setup Submodules
 ================
