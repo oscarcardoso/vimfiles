@@ -115,7 +115,7 @@ set so=7
 set wildmenu
 
 " Ignore compiled files
-set wildignore+=*.o,*~,*.pyc,*.bdae,*.dae,.git,*.wav,*.png,*.jpg,*.gif,*.tif,*.ttf,*.bin,*.lib,*.sobfs,*.exe,*.arrayc,*.obfs,*.col,*.strct,*.cstc,*.glsl,*.max,*.dope,*.mp4,*.tga,*.bmp,*.sln,DATA_[0-9],DATA_[0-9]_[0-9],*.srt,*.swf,*.fla,*.psd,*.obj,*.class,*.so,*.zip,*.jar,*.o.d,*.pdf,*.m4v,*.ods,*.cache,*.xlor,*.vxa,*.xls,*.fxb,*.vxn,*.bar,*.tcfg,*.filters,*.ncb,*.vcpro*,*.a,*.pch,*.pdb,*.dll,*.svn-base,*.vcxproj,*.suo,*.template,*.xcodeproj,*.sublime-workspace,*.orig,*.mp3,*.mp4,*.gitignore
+set wildignore+=*.o,*~,*.pyc,*.bdae,*.dae,.git,*.wav,*.png,*.jpg,*.gif,*.tif,*.ttf,*.bin,*.lib,*.sobfs,*.exe,*.arrayc,*.obfs,*.col,*.strct,*.cstc,*.glsl,*.max,*.dope,*.mp4,*.tga,*.bmp,*.sln,DATA_[0-9],DATA_[0-9]_[0-9],*.srt,*.swf,*.fla,*.psd,*.obj,*.class,*.so,*.zip,*.jar,*.o.d,*.pdf,*.m4v,*.ods,*.cache,*.xlor,*.vxa,*.xls,*.fxb,*.vxn,*.bar,*.tcfg,*.filters,*.ncb,*.vcpro*,*.a,*.pch,*.pdb,*.dll,*.svn-base,*.vcxproj,*.suo,*.template,*.xcodeproj,*.sublime-workspace,*.orig,*.mp3,*.mp4,*.gitignore,*.phar,*.base
 if has("win16") || has("win32")
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
@@ -212,12 +212,13 @@ set ffs=unix,dos,mac
 
 " Setup default font for guimode
 if has ('gui_running')
-	map <M-f>1 <Esc>:set guifont=M+\ 1m\ 10<CR>
+	map <M-f>1 <Esc>:set guifont=Fantasque\ Sans\ Mono\ 10<CR>
 	map <M-f>2 <Esc>:set guifont=Terminus\ 9<CR>
 	map <M-f>3 <Esc>:set guifont=Envy\ Code\ R\ 10<CR>
 	map <M-f>5 <Esc>:set guifont=Ubuntu\ Mono\ 12<CR>
 	if has("unix")
-		set guifont=Terminus\ 9
+        set guifont=Terminus\ 9
+		"set guifont=Fantasque\ Sans\ Mono\ 10
 		if &diff
 			set guifont=Terminus\ 9
 		endif
@@ -252,12 +253,13 @@ set tabstop=4
 
 " Linebreak on 500 characters
 set lbr
-set tw=500
+set tw=120
 
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+"set cc=80
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -382,7 +384,7 @@ vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 " for android projects
 "map <leader>g :Ack -i --java --cc --cpp --batch "" <left><left>
 " for dental departures
-map <leader>g :Ack -i -s --html --js --php "" <left><left>
+map <leader>g :Ack -i -s --html --js --php --coffee --sass "" <left><left>
 
 " Vimgreps in the current file
 map <leader><space> :Ack -i "" <C-R>%<C-A><home><right><right><right><right><right><right><right><right>
@@ -509,7 +511,18 @@ set nu!
 " learncode
 " learnpython
 " eclipse
+" mind
 let project="celsus"
+
+"Working with mind
+
+if (project == "mind")
+	if isdirectory("/home/oscar/mind")
+		cd /home/oscar/mind
+		set wildignore+=/home/oscar/mind/.sass-cache/**
+		set wildignore+=/home/oscar/mind/_site/**
+	endif
+endif
 
 "Working with Dental Departures
 if (project == "celsus")
@@ -543,19 +556,57 @@ if (project == "celsus")
 		if isdirectory("/var/www/dev")
 			cd /var/www/dev
 			set wildignore+=/var/www/dev/zend_cache/**
-			set wildignore+=/var/www/dev/public/js/ext/**
-			set wildignore+=/var/www/dev/public/js/ext.ux/**
+			set wildignore+=/var/www/dev/public/js/admin/libraries/**
 			set wildignore+=/var/www/dev/public/js/tiny_mce/**
 			set wildignore+=/var/www/dev/public/js/jquery/**
 			set wildignore+=/var/www/dev/public/blog/wp-admin/**
 			set wildignore+=/var/www/dev/public/images/**
+			set wildignore+=/var/www/dev/public/assets/**
+			set wildignore+=/var/www/dev/public/compiled/**
+			set wildignore+=/var/www/dev/library/google/**
+			set wildignore+=/var/www/dev/library/Zle/**
+			set wildignore+=/var/www/dev/application/bower_components/**
+			set wildignore+=/var/www/dev/application/node_modules/**
+			set wildignore+=/var/www/dev/application/dist/**
+			set wildignore+=/var/www/dev/public/bower_components/**
+			set wildignore+=/var/www/dev/public/min/**
+			set wildignore+=/var/www/dev/public/resources/icons/**
+			set wildignore+=/var/www/dev/public/resources/assets/images/**
 			set wildignore+=/var/www/dev/grind/**
+			set wildignore+=/var/www/dev/node_modules/**
 			set wildignore+=/var/www/dev/vendor/**
 			set wildignore+=/var/www/dev/tests/log/**
 			set wildignore+=/var/www/dev/tests/**
 			set wildignore+=/var/www/dev/data/mailer/**
+			set wildignore+=/var/www/dev/data/backups/**
 			set wildignore+=/var/www/dev/library/wurfl-php-1.4.2.0/**
 		endif
+		"if isdirectory("/var/www/admin")
+			"cd /var/www/admin
+			"set wildignore+=/var/www/admin/zend_cache/**
+			"set wildignore+=/var/www/admin/public/js/admin/libraries/**
+			"set wildignore+=/var/www/admin/public/js/tiny_mce/**
+			"set wildignore+=/var/www/admin/public/js/jquery/**
+			"set wildignore+=/var/www/admin/public/blog/wp-admin/**
+			"set wildignore+=/var/www/admin/public/images/**
+			"set wildignore+=/var/www/admin/public/assets/**
+			"set wildignore+=/var/www/admin/public/compiled/**
+			"set wildignore+=/var/www/admin/library/google/**
+			"set wildignore+=/var/www/admin/library/Zle/**
+			"set wildignore+=/var/www/admin/application/bower_components/**
+			"set wildignore+=/var/www/admin/public/bower_components/**
+			"set wildignore+=/var/www/admin/public/min/**
+			"set wildignore+=/var/www/admin/public/resources/icons/**
+			"set wildignore+=/var/www/admin/public/resources/assets/images/**
+			"set wildignore+=/var/www/admin/grind/**
+			"set wildignore+=/var/www/admin/node_modules/**
+			"set wildignore+=/var/www/admin/vendor/**
+			"set wildignore+=/var/www/admin/tests/log/**
+			"set wildignore+=/var/www/admin/tests/**
+			"set wildignore+=/var/www/admin/data/mailer/**
+			"set wildignore+=/var/www/admin/data/backups/**
+			"set wildignore+=/var/www/admin/library/wurfl-php-1.4.2.0/**
+		"endif
 	endif
 endif
 
@@ -704,30 +755,37 @@ let g:airline_mode_map = {
   \ '' : 'S',
   \ }
 
-let g:airline_powerline_fonts=1
+"let g:airline_powerline_fonts=1
+"let g:airline#extensions#hunks#enabled = 0
+
+"if !exists('g:airline_symbols')
+	"let g:airline_symbols = {}
+"endif
+
 let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '▶'
 
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
 " unicode symbols
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '◀'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '␤'
-"let g:airline_symbols.linenr = '¶'
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.whitespace = 'Ξ'
 
-" old vim-powerline symbols
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
-let g:airline_symbols.branch = '⭠'
-let g:airline_symbols.readonly = '⭤'
-let g:airline_symbols.linenr = '⭡'
+let g:airline#extensions#whitespace#checks = ['trailing']
+
+  let g:airline#extensions#branch#format = 'CustomBranchName'
+  function! CustomBranchName(name)
+    return ' ' . a:name
+  endfunction
 
 "NERDTree
 "autocmd VimEnter * NERDTree
@@ -804,6 +862,7 @@ set directory+=,/home/oscar/tmp,$TMP
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gvdiff<CR>
 nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gh :read !git rev-parse --abbrev-ref HEAD<CR>ggddA:
 
 "if has("gui_running")
 "	au FilterWritePre * if &diff | colorscheme gruvbox | endif
@@ -826,7 +885,7 @@ set errorformat=%-P%f,
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=1
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn %fw #%w}]'
-let g:syntastic_mode_map = { 'mode': 'passive', 
+let g:syntastic_mode_map = { 'mode': 'passive',
 							\ 'active_filetypes': ['php'],
 							\ 'passive_filetypes': ['javascript'] }
 nnoremap <silent><F1> :SyntasticCheck<CR>
@@ -838,14 +897,17 @@ cnoremap <F1> SyntasticCheck
 " Colorscheme after loading bundles
 try
 	if has("gui_running")
-		colorscheme base16-atelierforest
+		"colorscheme base16-atelierforest
 		"colorscheme base16-railscasts
 		"colorscheme moria
-		"colorscheme base16-solarized
+		"colorscheme base16-3024
+		"colorscheme base16-monokai
+		colorscheme base16-bespin
 		set background=dark
 	else
-		colorscheme jellybeans
-		set background=light
+		colorscheme gruvbox
+		"set background=light
+		set background=dark
 	endif
 catch
 endtry
