@@ -877,7 +877,7 @@ cnoremap <F1> SyntasticCheck
 try
 	if has("gui_running")
 		if has("win16") || has("win32")
-			colorscheme base16-atelierforest
+			colorscheme base16-bespin
 		else
             "colorscheme base16-atelierforest
             "colorscheme base16-railscasts
