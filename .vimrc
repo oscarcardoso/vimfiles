@@ -530,31 +530,31 @@ endif
 "Working with Dental Departures
 if (project == "celsus")
 	if has("win16") || has("win32")
-		cd D:\dd\dev
-		set wildignore+=D:\dd\dev\zend_cache\**
-		set wildignore+=D:\dd\dev\public\js\ext\**
-		set wildignore+=D:\dd\dev\public\js\ext.ux\**
-		set wildignore+=D:\dd\dev\public\js\tiny_mce\**
-		set wildignore+=D:\dd\dev\public\js\jquery\**
-		set wildignore+=D:\dd\dev\public\blog\wp-admin\**
-		set wildignore+=D:\dd\dev\public\images\**
-		set wildignore+=D:\dd\dev\grind\**
-		set wildignore+=D:\dd\dev\vendor\**
-		set wildignore+=D:\dd\dev\data\mailer\**
-		set wildignore+=D:\dd\dev\library\wurfl-php-1.4.2.0\**
+		cd C:\Users\oscar\dev
+		set wildignore+=C:\Users\oscar\dev\zend_cache\**
+		set wildignore+=C:\Users\oscar\dev\public\js\ext\**
+		set wildignore+=C:\Users\oscar\dev\public\js\ext.ux\**
+		set wildignore+=C:\Users\oscar\dev\public\js\tiny_mce\**
+		set wildignore+=C:\Users\oscar\dev\public\js\jquery\**
+		set wildignore+=C:\Users\oscar\dev\public\blog\wp-admin\**
+		set wildignore+=C:\Users\oscar\dev\public\images\**
+		set wildignore+=C:\Users\oscar\dev\grind\**
+		set wildignore+=C:\Users\oscar\dev\vendor\**
+		set wildignore+=C:\Users\oscar\dev\data\mailer\**
+		set wildignore+=C:\Users\oscar\dev\library\wurfl-php-1.4.2.0\**
 	elseif has("win32unix")
-		cd /cygdrive/c/Users/oscar/Projects/dd/dev
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/zend_cache/**
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/ext/**
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/ext.ux/**
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/tiny_mce/**
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/js/jquery/**
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/blog/wp-admin/**
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/public/images/**
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/grind/**
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/vendor/**
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/data/mailer/**
-		set wildignore+=/cygdrive/c/Users/oscar/Projects/dd/dev/library/wurfl-php-1.4.2.0/**
+		cd /cygdrive/c/Users/oscar/dev
+		set wildignore+=/cygdrive/c/Users/oscar/dev/zend_cache/**
+		set wildignore+=/cygdrive/c/Users/oscar/dev/public/js/ext/**
+		set wildignore+=/cygdrive/c/Users/oscar/dev/public/js/ext.ux/**
+		set wildignore+=/cygdrive/c/Users/oscar/dev/public/js/tiny_mce/**
+		set wildignore+=/cygdrive/c/Users/oscar/dev/public/js/jquery/**
+		set wildignore+=/cygdrive/c/Users/oscar/dev/public/blog/wp-admin/**
+		set wildignore+=/cygdrive/c/Users/oscar/dev/public/images/**
+		set wildignore+=/cygdrive/c/Users/oscar/dev/grind/**
+		set wildignore+=/cygdrive/c/Users/oscar/dev/vendor/**
+		set wildignore+=/cygdrive/c/Users/oscar/dev/data/mailer/**
+		set wildignore+=/cygdrive/c/Users/oscar/dev/library/wurfl-php-1.4.2.0/**
 	elseif has("unix")
 		if isdirectory("/var/www/dev")
 			cd /var/www/dev
@@ -610,37 +610,6 @@ if (project == "celsus")
 			"set wildignore+=/var/www/admin/data/backups/**
 			"set wildignore+=/var/www/admin/library/wurfl-php-1.4.2.0/**
 		"endif
-	endif
-endif
-
-"Working with learnpythonthehardway.org
-if (project == "learnpython")
-	if has("win16") || has("win32")
-		cd D:\dxd\learncode\python
-	else
-		cd /cygdrive/d/dxd/learncode/python
-	endif
-endif
-
-"Working with learn folder
-if( project == "learncode" )
-	if has("win16") || has("win32")
-		cd D:\dxd\learncode
-	else
-		cd /cygdrive/d/dxd/learncode
-	endif
-endif
-
-" Working with Eclipse-workspace
-if( project == "eclipse" )
-	if has("win16") || has("win32")
-		cd D:\Proyectos\eclipse-workspace
-		set wildignore+=d:/Proyectos/eclipse-workspace/ActivityA/**
-		set wildignore+=d:/Proyectos/eclipse-workspace/MyFirstApp/bin/**,d:/Proyectos/eclipse-workspace/MyFirstApp/gen/**
-	else
-		cd /cygdrive/d/Proyectos/eclipse-workspace
-		set wildignore+=/cygdrive/d/Proyectos/eclipse-workspace/ActivityA/**
-		set wildignore+=/cygdrive/d/Proyectos/eclipse-workspace/MyFirstApp/bin/**,/cygdrive/d/Proyectos/eclipse-workspace/MyFirstApp/gen/**
 	endif
 endif
 
