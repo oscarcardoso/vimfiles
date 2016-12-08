@@ -543,18 +543,18 @@ if (project == "celsus")
 		set wildignore+=C:\Users\oscar\dev\data\mailer\**
 		set wildignore+=C:\Users\oscar\dev\library\wurfl-php-1.4.2.0\**
 	elseif has("win32unix")
-		cd /cygdrive/c/Users/oscar/dev
-		set wildignore+=/cygdrive/c/Users/oscar/dev/zend_cache/**
-		set wildignore+=/cygdrive/c/Users/oscar/dev/public/js/ext/**
-		set wildignore+=/cygdrive/c/Users/oscar/dev/public/js/ext.ux/**
-		set wildignore+=/cygdrive/c/Users/oscar/dev/public/js/tiny_mce/**
-		set wildignore+=/cygdrive/c/Users/oscar/dev/public/js/jquery/**
-		set wildignore+=/cygdrive/c/Users/oscar/dev/public/blog/wp-admin/**
-		set wildignore+=/cygdrive/c/Users/oscar/dev/public/images/**
-		set wildignore+=/cygdrive/c/Users/oscar/dev/grind/**
-		set wildignore+=/cygdrive/c/Users/oscar/dev/vendor/**
-		set wildignore+=/cygdrive/c/Users/oscar/dev/data/mailer/**
-		set wildignore+=/cygdrive/c/Users/oscar/dev/library/wurfl-php-1.4.2.0/**
+		cd /c/Users/oscar/dev
+		set wildignore+=/c/Users/oscar/dev/zend_cache/**
+		set wildignore+=/c/Users/oscar/dev/public/js/ext/**
+		set wildignore+=/c/Users/oscar/dev/public/js/ext.ux/**
+		set wildignore+=/c/Users/oscar/dev/public/js/tiny_mce/**
+		set wildignore+=/c/Users/oscar/dev/public/js/jquery/**
+		set wildignore+=/c/Users/oscar/dev/public/blog/wp-admin/**
+		set wildignore+=/c/Users/oscar/dev/public/images/**
+		set wildignore+=/c/Users/oscar/dev/grind/**
+		set wildignore+=/c/Users/oscar/dev/vendor/**
+		set wildignore+=/c/Users/oscar/dev/data/mailer/**
+		set wildignore+=/c/Users/oscar/dev/library/wurfl-php-1.4.2.0/**
 	elseif has("unix")
 		if isdirectory("/var/www/dev")
 			cd /var/www/dev
@@ -621,10 +621,10 @@ if (project == "ftm")
 		set wildignore+=c:/users/oscar/Projects/FlexTimeMonitor/gen/**
 		set wildignore+=c:/users/oscar/Projects/FlexTimeMonitor/patches/**
 	else
-		cd /cygdrive/c/users/oscar/Projects/FlexTimeMonitor
-		set wildignore+=/cygdrive/c/users/oscar/Projects/FlexTimeMonitor/bin/**
-		set wildignore+=/cygdrive/c/users/oscar/Projects/FlexTimeMonitor/gen/**
-		set wildignore+=/cygdrive/c/users/oscar/Projects/FlexTimeMonitor/patches/**
+		cd /c/users/oscar/Projects/FlexTimeMonitor
+		set wildignore+=/c/users/oscar/Projects/FlexTimeMonitor/bin/**
+		set wildignore+=/c/users/oscar/Projects/FlexTimeMonitor/gen/**
+		set wildignore+=/c/users/oscar/Projects/FlexTimeMonitor/patches/**
 	endif
 endif
 
