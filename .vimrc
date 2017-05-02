@@ -875,6 +875,9 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gvdiff<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gh :read !git rev-parse --abbrev-ref HEAD<CR>ggddA:
+if has("gui_running") && (has("has16") || has("win32"))
+nnoremap <leader>gm :simalt ~x
+endif
 
 "if has("gui_running")
 "	au FilterWritePre * if &diff | colorscheme gruvbox | endif
