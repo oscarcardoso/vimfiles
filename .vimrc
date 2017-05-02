@@ -928,10 +928,17 @@ try
 		set background=dark
 	else
 		if has("win16") || has("win32")
-            colorscheme jellybeans
-            set background=light
+            "colorscheme base16-monokai
+			"colorscheme base16-solar-flare
+			"set termencoding=utf8
+			set term=xterm
+			set t_Co=256
+			let &t_AB="\e[48;5;%dm"
+			let &t_AF="\e[38;5;%dm"
+			"colorscheme base16-darktooth
+			colorscheme zenburn
         else
-            colorscheme gruvbox
+            colorscheme base16-bespin
             "set background=light
             set background=dark
         endif
