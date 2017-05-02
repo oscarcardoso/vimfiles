@@ -888,12 +888,13 @@ endif
 "endif
 
 if has("win32") && &shell !~ 'cmd'
-	set shellc:\Windows\System32\cmd.exe
+	set shell c:\Windows\System32\cmd.exe
 endif
 
 " Syntastic and jshint config
 " Use jslint as maker
-set makeprg=jshint\ %
+set makeprg=eslint\ %
+let g:syntastic_javascript_checkers = ['eslint']
 set errorformat=%-P%f,
 		\%E%>\ #%n\ %m,%Z%.%#Line\ %l\\,\ Pos\ %c,
 		\%-G%f\ is\ OK.,%-Q
@@ -901,8 +902,8 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=1
 let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn %fw #%w}]'
 let g:syntastic_mode_map = { 'mode': 'passive',
-							\ 'active_filetypes': ['php'],
-							\ 'passive_filetypes': ['javascript'] }
+							\ 'active_filetypes': ['php', 'javascript'],
+							\ 'passive_filetypes': [''] }
 nnoremap <silent><F1> :SyntasticCheck<CR>
 inoremap <silent><F1> <C-O>:SyntasticCheck<CR>
 vnoremap <silent><F1> :SyntasticCheck<CR>
