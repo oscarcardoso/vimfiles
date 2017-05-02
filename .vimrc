@@ -212,10 +212,10 @@ set ffs=unix,dos,mac
 
 " Setup default font for guimode
 if has ('gui_running')
-	map <M-f>1 <Esc>:set guifont=Fantasque\ Sans\ Mono\ 10<CR>
+	map <M-f>1 <Esc>:set guifont=Fantasque\ Sans\ Mono\ 8<CR>
 	map <M-f>2 <Esc>:set guifont=Terminus\ 9<CR>
 	map <M-f>3 <Esc>:set guifont=Envy\ Code\ R\ 10<CR>
-	map <M-f>5 <Esc>:set guifont=Ubuntu\ Mono\ 12<CR>
+	map <M-f>5 <Esc>:set guifont=Ubuntu\ Mono\ 10<CR>
 	if has("unix")
         set guifont=Terminus\ 9
 		"set guifont=Fantasque\ Sans\ Mono\ 10
@@ -223,9 +223,13 @@ if has ('gui_running')
 			set guifont=Terminus\ 9
 		endif
 	else
-		set guifont=Envy_Code_R_for_Powerline:h10:cANSI
+		map <M-f>1 <Esc>:set guifont=Fantasque_Sans_Mono:h8:cANSI:qDRAFT<CR>
+		map <M-f>2 <Esc>:set guifont=Terminus:h9:cANSI:qDRAFT<CR>
+		map <M-f>3 <Esc>:set guifont=Envy_Code_R:h10:cANSI:qDRAFT<CR>
+		map <M-f>5 <Esc>:set guifont=Fantasque_Sans_Mono:h10:cANSI:qDRAFT<CR>
+		set guifont=Fantasque_Sans_Mono:h8:cANSI:qDRAFT
 		if &diff
-			set guifont=Terminus\ 9
+			set guifont=Terminus:h9:cANSI:qDRAFT
 		endif
 	endif
 
@@ -297,7 +301,7 @@ map <C-l> <C-W>l
 map <leader>bd :Bclose<cr>
 
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+map <leader>ba :bufdo bd!<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
