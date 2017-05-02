@@ -542,10 +542,27 @@ if (project == "celsus")
 		set wildignore+=C:\Users\oscar\dev\public\js\jquery\**
 		set wildignore+=C:\Users\oscar\dev\public\blog\wp-admin\**
 		set wildignore+=C:\Users\oscar\dev\public\images\**
+		set wildignore+=C:\Users\oscar\dev\public\assets\**
+		set wildignore+=C:\Users\oscar\dev\public\compiled\**
+		set wildignore+=C:\Users\oscar\dev\library\google\**
+		set wildignore+=C:\Users\oscar\dev\library\Zle\**
+		set wildignore+=C:\Users\oscar\dev\application\bower_components\**
+		set wildignore+=C:\Users\oscar\dev\application\node_modules\**
+		set wildignore+=C:\Users\oscar\dev\application\dist\**
+		set wildignore+=C:\Users\oscar\dev\public\bower_components\**
+		set wildignore+=C:\Users\oscar\dev\bower_components\**
+		set wildignore+=C:\Users\oscar\dev\public\min\**
+		set wildignore+=C:\Users\oscar\dev\public\resources\icons\**
+		set wildignore+=C:\Users\oscar\dev\public\resources\assets\images\**
+		set wildignore+=C:\Users\oscar\dev\node_modules\**
+		set wildignore+=C:\Users\oscar\dev\tests\log\**
+		set wildignore+=C:\Users\oscar\dev\tests\**
 		set wildignore+=C:\Users\oscar\dev\grind\**
 		set wildignore+=C:\Users\oscar\dev\vendor\**
 		set wildignore+=C:\Users\oscar\dev\data\mailer\**
+		set wildignore+=C:\Users\oscar\dev\data\backups\**
 		set wildignore+=C:\Users\oscar\dev\library\wurfl-php-1.4.2.0\**
+		set wildignore+=C:\Users\oscar\dev\dockers\mysql-data\**
 	elseif has("win32unix")
 		cd /c/Users/oscar/dev
 		set wildignore+=/c/Users/oscar/dev/zend_cache/**
@@ -555,10 +572,27 @@ if (project == "celsus")
 		set wildignore+=/c/Users/oscar/dev/public/js/jquery/**
 		set wildignore+=/c/Users/oscar/dev/public/blog/wp-admin/**
 		set wildignore+=/c/Users/oscar/dev/public/images/**
+		set wildignore+=/c/Users/oscar/dev/public/assets/**
+		set wildignore+=/c/Users/oscar/dev/public/compiled/**
+		set wildignore+=/c/Users/oscar/dev/library/google/**
+		set wildignore+=/c/Users/oscar/dev/library/Zle/**
+		set wildignore+=/c/Users/oscar/dev/application/bower_components/**
+		set wildignore+=/c/Users/oscar/dev/application/node_modules/**
+		set wildignore+=/c/Users/oscar/dev/application/dist/**
+		set wildignore+=/c/Users/oscar/dev/public/bower_components/**
+		set wildignore+=/c/Users/oscar/dev/bower_components/**
+		set wildignore+=/c/Users/oscar/dev/public/min/**
+		set wildignore+=/c/Users/oscar/dev/public/resources/icons/**
+		set wildignore+=/c/Users/oscar/dev/public/resources/assets/images/**
+		set wildignore+=/c/Users/oscar/dev/node_modules/**
+		set wildignore+=/c/Users/oscar/dev/tests/log/**
+		set wildignore+=/c/Users/oscar/dev/tests/**
 		set wildignore+=/c/Users/oscar/dev/grind/**
 		set wildignore+=/c/Users/oscar/dev/vendor/**
 		set wildignore+=/c/Users/oscar/dev/data/mailer/**
+		set wildignore+=/c/Users/oscar/dev/data/backups/**
 		set wildignore+=/c/Users/oscar/dev/library/wurfl-php-1.4.2.0/**
+		set wildignore+=/c/Users/oscar/dev/dockers/mysql-data/**
 	elseif has("unix")
 		if isdirectory("/var/www/dev")
 			cd /var/www/dev
@@ -576,6 +610,7 @@ if (project == "celsus")
 			set wildignore+=/var/www/dev/application/node_modules/**
 			set wildignore+=/var/www/dev/application/dist/**
 			set wildignore+=/var/www/dev/public/bower_components/**
+			set wildignore+=/var/www/dev/bower_components/**
 			set wildignore+=/var/www/dev/public/min/**
 			set wildignore+=/var/www/dev/public/resources/icons/**
 			set wildignore+=/var/www/dev/public/resources/assets/images/**
@@ -587,33 +622,8 @@ if (project == "celsus")
 			set wildignore+=/var/www/dev/data/mailer/**
 			set wildignore+=/var/www/dev/data/backups/**
 			set wildignore+=/var/www/dev/library/wurfl-php-1.4.2.0/**
+			set wildignore+=/var/www/dev/dockers/mysql-data/**
 		endif
-		"if isdirectory("/var/www/admin")
-			"cd /var/www/admin
-			"set wildignore+=/var/www/admin/zend_cache/**
-			"set wildignore+=/var/www/admin/public/js/admin/libraries/**
-			"set wildignore+=/var/www/admin/public/js/tiny_mce/**
-			"set wildignore+=/var/www/admin/public/js/jquery/**
-			"set wildignore+=/var/www/admin/public/blog/wp-admin/**
-			"set wildignore+=/var/www/admin/public/images/**
-			"set wildignore+=/var/www/admin/public/assets/**
-			"set wildignore+=/var/www/admin/public/compiled/**
-			"set wildignore+=/var/www/admin/library/google/**
-			"set wildignore+=/var/www/admin/library/Zle/**
-			"set wildignore+=/var/www/admin/application/bower_components/**
-			"set wildignore+=/var/www/admin/public/bower_components/**
-			"set wildignore+=/var/www/admin/public/min/**
-			"set wildignore+=/var/www/admin/public/resources/icons/**
-			"set wildignore+=/var/www/admin/public/resources/assets/images/**
-			"set wildignore+=/var/www/admin/grind/**
-			"set wildignore+=/var/www/admin/node_modules/**
-			"set wildignore+=/var/www/admin/vendor/**
-			"set wildignore+=/var/www/admin/tests/log/**
-			"set wildignore+=/var/www/admin/tests/**
-			"set wildignore+=/var/www/admin/data/mailer/**
-			"set wildignore+=/var/www/admin/data/backups/**
-			"set wildignore+=/var/www/admin/library/wurfl-php-1.4.2.0/**
-		"endif
 	endif
 endif
 
