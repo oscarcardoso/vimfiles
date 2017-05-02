@@ -959,6 +959,18 @@ nmap <leader>t :CtrlP <cr>
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_custom_ignore = {
+	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
+	\ 'file': '\v\.(exe|so|dll)$',
+	\ }
+let g:ctrlp_custom_ignore = {
+	\ 'dir':  'templates-mobile$\|application/dist$\|node_modules$\|bower_components$\|vendor$\|zend_cache$\|mysql-data$',
+	\ 'file': '\v\.(exe|so|dll)$',
+	\ }
+"let g:ctrlp_custom_ignore = {
+	"\ 'dir':  'application/modules/cn/dist$\|application/modules/mx/dist$\|application/modules/th/dist$\|',
+	"\ 'file': '\v\.(exe|so|dll)$',
+	"\ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Qargs helper command http://vimcasts.org/episodes/project-wide-find-and-replace/
