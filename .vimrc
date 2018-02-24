@@ -116,6 +116,7 @@ set wildmenu
 
 " Ignore compiled files
 set wildignore+=*.o,*~,*.pyc,*.bdae,*.dae,.git,*.wav,*.png,*.jpg,*.gif,*.tif,*.ttf,*.bin,*.lib,*.sobfs,*.exe,*.arrayc,*.obfs,*.col,*.strct,*.cstc,*.glsl,*.max,*.dope,*.mp4,*.tga,*.bmp,*.sln,DATA_[0-9],DATA_[0-9]_[0-9],*.srt,*.swf,*.fla,*.psd,*.obj,*.class,*.so,*.zip,*.jar,*.o.d,*.pdf,*.m4v,*.ods,*.cache,*.xlor,*.vxa,*.xls,*.fxb,*.vxn,*.bar,*.tcfg,*.filters,*.ncb,*.vcpro*,*.a,*.pch,*.pdb,*.dll,*.svn-base,*.vcxproj,*.suo,*.template,*.xcodeproj,*.sublime-workspace,*.orig,*.mp3,*.mp4,*.gitignore,*.phar,*.base
+set wildignore+=*.svg,*.eot,*.woff,*.woff2
 if has("win16") || has("win32")
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
@@ -202,6 +203,7 @@ endif
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
+set termencoding=utf-8
 "set the language to US with spanish character support áéíóúñó
 "set langmenu=en_US.ISO-8859-15
 let $LANG = 'en_US'
@@ -212,17 +214,17 @@ set ffs=unix,dos,mac
 
 " Setup default font for guimode
 if has ('gui_running')
-	map <M-f>1 <Esc>:set guifont=Fantasque\ Sans\ Mono\ 8<CR>
-	map <M-f>2 <Esc>:set guifont=Terminus\ 9<CR>
-	map <M-f>3 <Esc>:set guifont=Envy\ Code\ R\ 10<CR>
-	map <M-f>5 <Esc>:set guifont=Ubuntu\ Mono\ 10<CR>
 	if has("unix")
+		map <M-f>1 <Esc>:set guifont=Fantasque\ Sans\ Mono\ 8<CR>
+		map <M-f>2 <Esc>:set guifont=Terminus\ 9<CR>
+		map <M-f>3 <Esc>:set guifont=Envy\ Code\ R\ 10<CR>
+		map <M-f>5 <Esc>:set guifont=Ubuntu\ Mono\ 10<CR>
         set guifont=Terminus\ 9
 		"set guifont=Fantasque\ Sans\ Mono\ 10
 		if &diff
 			set guifont=Terminus\ 9
 		endif
-	else
+	elseif has("win")
 		map <M-f>1 <Esc>:set guifont=Fantasque_Sans_Mono:h8:cANSI:qDRAFT<CR>
 		map <M-f>2 <Esc>:set guifont=Terminus:h9:cANSI:qDRAFT<CR>
 		map <M-f>3 <Esc>:set guifont=Envy_Code_R:h10:cANSI:qDRAFT<CR>
@@ -231,10 +233,22 @@ if has ('gui_running')
 		if &diff
 			set guifont=Terminus:h9:cANSI:qDRAFT
 		endif
+	elseif has("mac")
+		map <M-f>1 <Esc>:set guifont=Fira\ Mono\ 12<CR>
+		map <M-f>2 <Esc>:set guifont=Hack\ 12<CR>
+		set guifont=Fira\ Mono:h12
+		if &diff
+			set guifont=Fira\ Mono:h9
+		endif
+	else
+        set guifont=Terminus\ 9
+		"set guifont=Fantasque\ Sans\ Mono\ 10
+		if &diff
+			set guifont=Terminus\ 9
+		endif
 	endif
 
 endif
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -393,6 +407,9 @@ vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 " for dental departures
 map <leader>g :Ack -i -s --html --js --php --coffee --sass "" <left><left>
 
+" for Clover Wireless
+map <leader>g :Ack -i -s --html --css --csharp --sql --xml "" <left><left>
+
 " Vimgreps in the current file
 map <leader><space> :Ack -i "" <C-R>%<C-A><home><right><right><right><right><right><right><right><right>
 "let g:ackhighlight = 0
@@ -519,6 +536,7 @@ set nu!
 " learnpython
 " eclipse
 " mind
+" devicemgr
 let project="celsus"
 
 "Working with mind
@@ -642,6 +660,19 @@ if (project == "ftm")
 	endif
 endif
 
+
+if (project == "devicemgr")
+	map <leader>g :Ack -i -s --html --css --php --js --ruby "" <left><left>
+	if has("win16") || has("win32")
+		cd C:\Users\oscar\dev
+		set wildignore+=C:\Users\oscar\dev\zend_cache\**
+		set wildignore+=C:\Users\oscar\dev\public\js\ext\**
+		set wildignore+=C:\Users\oscar\dev\public\js\ext.ux\**
+		set wildignore+=C:\Users\oscar\dev\public\js\tiny_mce\**
+		set wildignore+=C:\Users\oscar\dev\public\js\jquery\**
+		set wildignore+=C:\Users\oscar\dev\public\blog\wp-admin\**
+	endif
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Screen size and position Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -744,41 +775,70 @@ let g:airline_mode_map = {
 let g:airline_powerline_fonts=1
 "let g:airline#extensions#hunks#enabled = 0
 
-"if !exists('g:airline_symbols')
-	"let g:airline_symbols = {}
-"endif
+if has("mac")
+	if !exists('g:airline_symbols')
+		let g:airline_symbols = {}
+	endif
+endif
 
 let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '▶'
+if !has("mac")
+	let g:airline#extensions#tabline#left_sep = ' '
+	let g:airline#extensions#tabline#left_alt_sep = '▶'
+endif
 let g:airline#extensions#branch#displayed_head_limit = 15
-let g:airline#extensions#branch#empty_message = 'NO-BRANCH'
+let g:airline#extensions#branch#empty_message = 'NO-BR'
 
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
+if !has("mac")
+	if !exists('g:airline_symbols')
+		let g:airline_symbols = {}
+	endif
+endif
+
 " unicode symbols
 let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
 let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
+
 if has("gui_running")
-	let g:airline_left_sep = ''
-	let g:airline_left_alt_sep = ''
-	let g:airline_right_sep = ''
-	let g:airline_right_alt_sep = ''
-	let g:airline_symbols.branch = ''
-	let g:airline_symbols.readonly = ''
-	let g:airline_symbols.linenr = ''
-	let g:airline_symbols.paste = 'ρ'
-	let g:airline_symbols.whitespace = 'Ξ'
+	if has("mac")
+		let g:airline_symbols.whitespace = 'Ξ'
+
+		" airline symbols
+		let g:airline_left_sep = ''
+		let g:airline_left_alt_sep = ''
+		let g:airline_right_sep = ''
+		let g:airline_right_alt_sep = ''
+		let g:airline_symbols.branch = ''
+		let g:airline_symbols.readonly = ''
+		let g:airline_symbols.linenr = ''
+	else
+		let g:airline_left_sep = ''
+		let g:airline_left_alt_sep = ''
+		let g:airline_right_sep = ''
+		let g:airline_right_alt_sep = ''
+		let g:airline_symbols.branch = ''
+		let g:airline_symbols.readonly = ''
+		let g:airline_symbols.linenr = ''
+		let g:airline_symbols.paste = 'ρ'
+		let g:airline_symbols.whitespace = 'Ξ'
+	endif
 else
-	let g:airline_symbols.linenr = 'ƒ'
-	let g:airline_symbols.branch = 'ß'
-	let g:airline_symbols.paste = 'þ'
-	let g:airline_symbols.whitespace = '‡'
+	if !has("mac")
+		let g:airline_symbols.linenr = 'ƒ'
+		let g:airline_symbols.branch = 'ß'
+		let g:airline_symbols.paste = 'þ'
+		let g:airline_symbols.whitespace = '‡'
+	endif
 endif
 
 let g:airline#extensions#whitespace#checks = ['trailing']
@@ -786,6 +846,8 @@ let g:airline#extensions#whitespace#trailing_format = 'tli[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'mix-ind[%s]'
 let g:airline#extensions#whitespace#long_format = 'long[%s]'
 let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-ind-fl[%s]'
+
+let g:airline_theme='cool'
 
   let g:airline#extensions#branch#format = 'CustomBranchName'
   function! CustomBranchName(name)
@@ -917,6 +979,8 @@ try
 			"colorscheme base16-tomorrow-night
 			"colorscheme base16-solar-flare
 			colorscheme base16-darktooth
+		elseif has("macunix")
+			color base16-darktooth
 		else
             "colorscheme base16-atelierforest
             "colorscheme base16-railscasts
@@ -938,7 +1002,7 @@ try
 			"colorscheme base16-darktooth
 			colorscheme zenburn
         else
-            colorscheme base16-bespin
+            colorscheme jellybeans
             "set background=light
             set background=dark
         endif
@@ -1004,3 +1068,23 @@ fun! TrimWhitespace()
 endfun
 
 noremap <Leader>gw :call TrimWhitespace()<CR>
+noremap <Leader>dt :windo diffthis<CR>
+noremap <Leader>do :windo diffoff<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Python tabs stuff
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \| set softtabstop=4
+    \| set shiftwidth=4
+    \| set textwidth=79
+    \| set expandtab
+    \| set autoindent
+    \| set fileformat=unix
+
+au FileType js,html,css
+    \ set tabstop=2
+    \| set softtabstop=2
+    \| set shiftwidth=2
+
