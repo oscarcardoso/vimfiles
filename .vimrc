@@ -117,7 +117,7 @@ set wildmenu
 " Ignore compiled files
 set wildignore+=*.o,*~,*.pyc,*.bdae,*.dae,.git,*.wav,*.png,*.jpg,*.gif,*.tif,*.ttf,*.bin,*.lib,*.sobfs,*.exe,*.arrayc,*.obfs,*.col,*.strct,*.cstc,*.glsl,*.max,*.dope,*.mp4,*.tga,*.bmp,*.sln,DATA_[0-9],DATA_[0-9]_[0-9],*.srt,*.swf,*.fla,*.psd,*.obj,*.class,*.so,*.zip,*.jar,*.o.d,*.pdf,*.m4v,*.ods,*.cache,*.xlor,*.vxa,*.xls,*.fxb,*.vxn,*.bar,*.tcfg,*.filters,*.ncb,*.vcpro*,*.a,*.pch,*.pdb,*.dll,*.svn-base,*.vcxproj,*.suo,*.template,*.xcodeproj,*.sublime-workspace,*.orig,*.mp3,*.mp4,*.gitignore,*.phar,*.base
 if has("win16") || has("win32")
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/packages
 else
     set wildignore+=.git\*,.hg\*,.svn\*
 endif
@@ -202,6 +202,7 @@ endif
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
+set renderoptions=type:directx
 "set the language to US with spanish character support áéíóúñó
 "set langmenu=en_US.ISO-8859-15
 let $LANG = 'en_US'
@@ -223,13 +224,18 @@ if has ('gui_running')
 			set guifont=Terminus\ 9
 		endif
 	else
-		map <M-f>1 <Esc>:set guifont=Fantasque_Sans_Mono:h8:cANSI:qDRAFT<CR>
-		map <M-f>2 <Esc>:set guifont=Terminus:h9:cANSI:qDRAFT<CR>
-		map <M-f>3 <Esc>:set guifont=Envy_Code_R:h10:cANSI:qDRAFT<CR>
-		map <M-f>5 <Esc>:set guifont=Fantasque_Sans_Mono:h10:cANSI:qDRAFT<CR>
-		set guifont=Fantasque_Sans_Mono:h8:cANSI:qDRAFT
+		map <M-f>1 <Esc>:set guifont=Hack:h9:cANSI:qDRAFT<CR>
+		map <M-f>2 <Esc>:set guifont=Inconsolata:h12:cANSI:qDRAFT<CR>
+		map <M-f>3 <Esc>:set guifont=Hasklig:h10:cANSI:qDRAFT<CR>
+		map <M-f>4 <Esc>:set guifont=Envy_Code_R_for_Powerline:h10:cANSI:qDRAFT<CR>
+		"set guifont=Envy_Code_R_for_Powerline:h10:cANSI:qDRAFT
+		"set guifont=Hasklig:h10:cANSI:qDRAFT
+		"set guifont=Envy_Code_R_for_Powerline:h10:cANSI:qDRAFT
+		"set guifont=Hack:h9:cANSI:qDRAFT
+		set guifont=Inconsolata_for_Powerline:h12:W500:cANSI:qDRAFT
+		"set guifont=Fira_Mono_for_Powerline:h9:cANSI
 		if &diff
-			set guifont=Terminus:h9:cANSI:qDRAFT
+			set guifont=Envy_Code_R_for_Powerline:h9:cANSI:qDRAFT
 		endif
 	endif
 
@@ -255,15 +261,17 @@ set noswapfile
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
+set autoindent
+set noexpandtab
 set tabstop=4
+set shiftwidth=4
 
 " Linebreak on 500 characters
 set lbr
 set tw=500
 
-set ai "Auto indent
-set si "Smart indent
+"set ai "Auto indent
+"set si "Smart indent
 set wrap "Wrap lines
 
 "set cc=80
@@ -390,8 +398,11 @@ vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 " Open vimgrep and put the cursor in the right position
 " for android projects
 "map <leader>g :Ack -i --java --cc --cpp --batch "" <left><left>
-" for dental departures
-map <leader>g :Ack -i -s --html --js --php --coffee --sass "" <left><left>
+"map <leader>g :Ack -i -s --html --js --php --coffee --sass "" <left><left>
+" for Masimo C# projects
+map <leader>g :Ack -i -s --html --js --css --csharp --aspx --asp --sql --xml --proj "" <left><left>
+" for Masimo mainly SQL
+map <leader>s :Ack -i -s --sql "" <left><left>
 
 " Vimgreps in the current file
 map <leader><space> :Ack -i "" <C-R>%<C-A><home><right><right><right><right><right><right><right><right>
@@ -510,7 +521,14 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Project Folder Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nu!
+"set nu!
+set number! relativenumber!
+
+augroup numbertoggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+augroup END
 
 " Project list
 " dd
@@ -519,126 +537,22 @@ set nu!
 " learnpython
 " eclipse
 " mind
-let project="celsus"
+let project="masimo"
 
-"Working with mind
-
-if (project == "mind")
-	if isdirectory("/home/oscar/mind")
-		cd /home/oscar/mind
-		set wildignore+=/home/oscar/mind/.sass-cache/**
-		set wildignore+=/home/oscar/mind/_site/**
-	endif
-endif
-
-"Working with Dental Departures
-if (project == "celsus")
+" Working with masimo
+if (project == "masimo")
 	if has("win16") || has("win32")
-		cd C:\Users\oscar\dev
-		set wildignore+=C:\Users\oscar\dev\zend_cache\**
-		set wildignore+=C:\Users\oscar\dev\public\js\ext\**
-		set wildignore+=C:\Users\oscar\dev\public\js\ext.ux\**
-		set wildignore+=C:\Users\oscar\dev\public\js\tiny_mce\**
-		set wildignore+=C:\Users\oscar\dev\public\js\jquery\**
-		set wildignore+=C:\Users\oscar\dev\public\blog\wp-admin\**
-		set wildignore+=C:\Users\oscar\dev\public\images\**
-		set wildignore+=C:\Users\oscar\dev\public\assets\**
-		set wildignore+=C:\Users\oscar\dev\public\compiled\**
-		set wildignore+=C:\Users\oscar\dev\library\google\**
-		set wildignore+=C:\Users\oscar\dev\library\Zle\**
-		set wildignore+=C:\Users\oscar\dev\application\bower_components\**
-		set wildignore+=C:\Users\oscar\dev\application\node_modules\**
-		set wildignore+=C:\Users\oscar\dev\application\dist\**
-		set wildignore+=C:\Users\oscar\dev\public\bower_components\**
-		set wildignore+=C:\Users\oscar\dev\bower_components\**
-		set wildignore+=C:\Users\oscar\dev\public\min\**
-		set wildignore+=C:\Users\oscar\dev\public\resources\icons\**
-		set wildignore+=C:\Users\oscar\dev\public\resources\assets\images\**
-		set wildignore+=C:\Users\oscar\dev\node_modules\**
-		set wildignore+=C:\Users\oscar\dev\tests\log\**
-		set wildignore+=C:\Users\oscar\dev\tests\**
-		set wildignore+=C:\Users\oscar\dev\grind\**
-		set wildignore+=C:\Users\oscar\dev\vendor\**
-		set wildignore+=C:\Users\oscar\dev\data\mailer\**
-		set wildignore+=C:\Users\oscar\dev\data\backups\**
-		set wildignore+=C:\Users\oscar\dev\library\wurfl-php-1.4.2.0\**
-		set wildignore+=C:\Users\oscar\dev\dockers\mysql-data\**
-	elseif has("win32unix")
-		cd /c/Users/oscar/dev
-		set wildignore+=/c/Users/oscar/dev/zend_cache/**
-		set wildignore+=/c/Users/oscar/dev/public/js/ext/**
-		set wildignore+=/c/Users/oscar/dev/public/js/ext.ux/**
-		set wildignore+=/c/Users/oscar/dev/public/js/tiny_mce/**
-		set wildignore+=/c/Users/oscar/dev/public/js/jquery/**
-		set wildignore+=/c/Users/oscar/dev/public/blog/wp-admin/**
-		set wildignore+=/c/Users/oscar/dev/public/images/**
-		set wildignore+=/c/Users/oscar/dev/public/assets/**
-		set wildignore+=/c/Users/oscar/dev/public/compiled/**
-		set wildignore+=/c/Users/oscar/dev/library/google/**
-		set wildignore+=/c/Users/oscar/dev/library/Zle/**
-		set wildignore+=/c/Users/oscar/dev/application/bower_components/**
-		set wildignore+=/c/Users/oscar/dev/application/node_modules/**
-		set wildignore+=/c/Users/oscar/dev/application/dist/**
-		set wildignore+=/c/Users/oscar/dev/public/bower_components/**
-		set wildignore+=/c/Users/oscar/dev/bower_components/**
-		set wildignore+=/c/Users/oscar/dev/public/min/**
-		set wildignore+=/c/Users/oscar/dev/public/resources/icons/**
-		set wildignore+=/c/Users/oscar/dev/public/resources/assets/images/**
-		set wildignore+=/c/Users/oscar/dev/node_modules/**
-		set wildignore+=/c/Users/oscar/dev/tests/log/**
-		set wildignore+=/c/Users/oscar/dev/tests/**
-		set wildignore+=/c/Users/oscar/dev/grind/**
-		set wildignore+=/c/Users/oscar/dev/vendor/**
-		set wildignore+=/c/Users/oscar/dev/data/mailer/**
-		set wildignore+=/c/Users/oscar/dev/data/backups/**
-		set wildignore+=/c/Users/oscar/dev/library/wurfl-php-1.4.2.0/**
-		set wildignore+=/c/Users/oscar/dev/dockers/mysql-data/**
-	elseif has("unix")
-		if isdirectory("/var/www/dev")
-			cd /var/www/dev
-			set wildignore+=/var/www/dev/zend_cache/**
-			set wildignore+=/var/www/dev/public/js/admin/libraries/**
-			set wildignore+=/var/www/dev/public/js/tiny_mce/**
-			set wildignore+=/var/www/dev/public/js/jquery/**
-			set wildignore+=/var/www/dev/public/blog/wp-admin/**
-			set wildignore+=/var/www/dev/public/images/**
-			set wildignore+=/var/www/dev/public/assets/**
-			set wildignore+=/var/www/dev/public/compiled/**
-			set wildignore+=/var/www/dev/library/google/**
-			set wildignore+=/var/www/dev/library/Zle/**
-			set wildignore+=/var/www/dev/application/bower_components/**
-			set wildignore+=/var/www/dev/application/node_modules/**
-			set wildignore+=/var/www/dev/application/dist/**
-			set wildignore+=/var/www/dev/public/bower_components/**
-			set wildignore+=/var/www/dev/bower_components/**
-			set wildignore+=/var/www/dev/public/min/**
-			set wildignore+=/var/www/dev/public/resources/icons/**
-			set wildignore+=/var/www/dev/public/resources/assets/images/**
-			set wildignore+=/var/www/dev/grind/**
-			set wildignore+=/var/www/dev/node_modules/**
-			set wildignore+=/var/www/dev/vendor/**
-			set wildignore+=/var/www/dev/tests/log/**
-			set wildignore+=/var/www/dev/tests/**
-			set wildignore+=/var/www/dev/data/mailer/**
-			set wildignore+=/var/www/dev/data/backups/**
-			set wildignore+=/var/www/dev/library/wurfl-php-1.4.2.0/**
-			set wildignore+=/var/www/dev/dockers/mysql-data/**
-		endif
-	endif
-endif
-
-" Working with flex time monitor
-if (project == "ftm")
-	if has("win16") || has("win32")
-		cd C:\users\oscar\Projects\FlexTimeMonitor
-		set wildignore+=c:/users/oscar/Projects/FlexTimeMonitor/bin/**
-		set wildignore+=c:/users/oscar/Projects/FlexTimeMonitor/gen/**
-		set wildignore+=c:/users/oscar/Projects/FlexTimeMonitor/patches/**
+		cd C:\users\ocardoso\masimo
+		"set wildignore+=c:/users/oscar/Projects/FlexTimeMonitor/bin/**
+		set wildignore+=c:/users/oscar/masimo/sia/packages/**
+		set wildignore+=c:/users/oscar/masimo/sia/MasimoMVC/Scripts/plugins/**
+		set wildignore+=c:/users/oscar/masimo/sia/MasimoMVC/Scripts/dx.*
+		set wildignore+=c:/users/oscar/masimo/sia/MasimoMVC/Content/dx.*
+		set wildignore+=c:/users/oscar/masimo/sia/lib/**
+		set wildignore+=c:/users/oscar/masimo/sia/MasimoMVC/Scripts/globalize/**
 	else
-		cd /c/users/oscar/Projects/FlexTimeMonitor
-		set wildignore+=/c/users/oscar/Projects/FlexTimeMonitor/bin/**
-		set wildignore+=/c/users/oscar/Projects/FlexTimeMonitor/gen/**
-		set wildignore+=/c/users/oscar/Projects/FlexTimeMonitor/patches/**
+		cd /c/users/ocardoso/
+		"set wildignore+=/c/users/oscar/Projects/FlexTimeMonitor/bin/**
 	endif
 endif
 
@@ -726,7 +640,9 @@ call pathogen#helptags()
 "let g:Powerline_mode_v = ' V '
 
 " Airline
+let g:airline_theme='ayu_dark'
 " Short form mode text
+let g:airline_section_x = ''
 let g:airline_mode_map = {
   \ '__' : '-',
   \ 'n'  : 'N',
@@ -748,11 +664,11 @@ let g:airline_powerline_fonts=1
 	"let g:airline_symbols = {}
 "endif
 
-let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '▶'
-let g:airline#extensions#branch#displayed_head_limit = 15
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '▶'
+let g:airline#extensions#branch#displayed_head_limit = 25
 let g:airline#extensions#branch#empty_message = 'NO-BRANCH'
 
   if !exists('g:airline_symbols')
@@ -862,7 +778,7 @@ nmap <leader>d :call DeleteEmptyBuffers() <cr>
 "fugitive-vim Gdiff fix from http://stackoverflow.com/questions/2932399/error-using-the-gdiff-command-of-fugitive-vim-using-gvim-for-windows-and-msys-g
 "let $TMP="c:/temp"
 if has("win16") || has("win32")
-	let $TMP="c:/Users/oscar/AppData/Local/Temp"
+	let $TMP="c:/Users/ocardoso/temp"
 else
 	let $TMP="/home/oscar/tmp"
 endif
@@ -916,7 +832,7 @@ try
 		if has("win16") || has("win32")
 			"colorscheme base16-tomorrow-night
 			"colorscheme base16-solar-flare
-			colorscheme base16-darktooth
+			colorscheme base16-phd
 		else
             "colorscheme base16-atelierforest
             "colorscheme base16-railscasts
@@ -988,9 +904,9 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vdebug Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
-let g:vdebug_options = {'break_on_open': 0}
-let g:vdebug_options = {'watch_window_style': 'compact'}
+"let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
+"let g:vdebug_options = {'break_on_open': 0}
+"let g:vdebug_options = {'watch_window_style': 'compact'}
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1004,3 +920,6 @@ fun! TrimWhitespace()
 endfun
 
 noremap <Leader>gw :call TrimWhitespace()<CR>
+noremap <Leader>gy :put =strftime('%FT%T%z')<CR>
+
+"set lines=999 columns=999
